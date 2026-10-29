@@ -206,11 +206,20 @@
 }
 
 .landing-info h3 {
+  display: grid;
   font-size: 22px;
   letter-spacing: 2px;
   font-weight: 300;
   color: var(--accentColor);
   margin: 0;
+}
+
+.landing-info h3 > span {
+  grid-area: 1 / 1;
+}
+
+.landing-prefix-2 {
+  opacity: 0;
 }
 
 .landing-info h2 {

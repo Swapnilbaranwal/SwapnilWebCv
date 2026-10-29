@@ -12,15 +12,19 @@ export function initialFX() {
     delay: 1,
   });
 
+  const iosPrefix = new SplitText(".landing-prefix-1", {
+    type: "chars,lines",
+    linesClass: "split-h2",
+  });
   var landingText = new SplitText(
-    [".landing-info h3", ".landing-intro h2", ".landing-intro h1"],
+    [".landing-intro h2", ".landing-intro h1"],
     {
       type: "chars,lines",
       linesClass: "split-line",
     }
   );
   gsap.fromTo(
-    landingText.chars,
+    [...iosPrefix.chars, ...landingText.chars],
     { opacity: 0, y: 80, filter: "blur(5px)" },
     {
       opacity: 1,
@@ -75,9 +79,12 @@ export function initialFX() {
   var landingText3 = new SplitText(".landing-h2-info-1", TextProps);
   var landingText4 = new SplitText(".landing-h2-1", TextProps);
   var landingText5 = new SplitText(".landing-h2-2", TextProps);
+  const aiPrefix = new SplitText(".landing-prefix-2", TextProps);
 
   LoopText(landingText2, landingText3);
   LoopText(landingText4, landingText5);
+  LoopText(iosPrefix, aiPrefix);
+  gsap.set(".landing-prefix-2", { opacity: 1 });
 }
 
 function LoopText(Text1: SplitText, Text2: SplitText) {
@@ -93,7 +100,7 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
       duration: 1.2,
       ease: "power3.inOut",
       y: 0,
-      stagger: 0.1,
+      stagger: { amount: 0.8 },
       delay: delay,
     },
     0
@@ -105,7 +112,7 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
         duration: 1.2,
         ease: "power3.inOut",
         y: 0,
-        stagger: 0.1,
+        stagger: { amount: 0.8 },
         delay: delay2,
       },
       1
@@ -117,7 +124,7 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
         y: -80,
         duration: 1.2,
         ease: "power3.inOut",
-        stagger: 0.1,
+        stagger: { amount: 0.8 },
         delay: delay,
       },
       0
@@ -128,7 +135,7 @@ function LoopText(Text1: SplitText, Text2: SplitText) {
         y: -80,
         duration: 1.2,
         ease: "power3.inOut",
-        stagger: 0.1,
+        stagger: { amount: 0.8 },
         delay: delay2,
       },
       1
