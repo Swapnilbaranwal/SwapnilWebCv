@@ -17,7 +17,7 @@
 
 .hackathon-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #363636;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
   transition: 0.3s;
@@ -40,6 +40,13 @@
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: #0a1424;
+}
+
+.hackathon-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hackathon-image img {
@@ -53,6 +60,62 @@
 
 .hackathon-card:hover .hackathon-image img {
   transform: scale(1.04);
+}
+
+.hackathon-card:hover .hackathon-image-carousel img {
+  transform: none;
+}
+
+.hackathon-image-carousel .hackathon-image-link img {
+  object-fit: contain;
+}
+
+.hackathon-carousel-button {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(10, 14, 23, 0.78);
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease;
+}
+
+.hackathon-carousel-button:hover {
+  background: rgba(20, 184, 166, 0.92);
+}
+
+.hackathon-carousel-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hackathon-carousel-previous {
+  left: 12px;
+}
+
+.hackathon-carousel-next {
+  right: 12px;
+}
+
+.hackathon-carousel-count {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  min-width: 48px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: rgba(10, 14, 23, 0.8);
+  color: #fff;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
 }
 
 .hackathon-badge {
@@ -86,6 +149,17 @@
 
 .hackathon-info {
   padding: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.hackathon-date {
+  margin-bottom: 8px;
+  color: var(--accentColor);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .hackathon-info h3 {
@@ -95,12 +169,42 @@
   margin: 0 0 8px;
 }
 
+.hackathon-info h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hackathon-info h3 a:hover {
+  color: var(--accentColor);
+}
+
 .hackathon-info p {
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6;
   margin: 0;
   opacity: 0.75;
+}
+
+.hackathon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: 18px;
+  color: var(--accentColor);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hackathon-link:hover {
+  color: #fff;
+}
+
+.hackathon-link svg {
+  width: 17px;
+  height: 17px;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -115,9 +219,13 @@
   .hackathon-image {
     aspect-ratio: 4 / 3;
   }
+
+  .hackathon-image-carousel {
+    aspect-ratio: 4 / 5;
+  }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 700px) {
   .hackathon-section {
     padding: 30px 0;
   }
@@ -129,5 +237,13 @@
 
   .hackathon-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hackathon-card,
+  .hackathon-image img,
+  .hackathon-carousel-button {
+    transition: none;
   }
 }
